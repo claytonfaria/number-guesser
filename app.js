@@ -26,15 +26,20 @@ const message = document.querySelector('.message');
 minNum.textContent = min;
 maxNum.textContent = max;
 
-// Play Again event listener
-game.addEventListener('mousedown', function(e) {
+// Event Listeners
+game.addEventListener('mousedown', playAgain);
+guessBtn.addEventListener('click', getGuess);
+
+// Play Again
+function playAgain(e) {
   if (e.target.className === 'play-again') {
     window.location.reload();
+    guessInput.value = '';
   }
-});
+};
 
-// Listen for guess
-guessBtn.addEventListener('click', function() {
+// Get guess from user
+function getGuess() {
   const guess = parseInt(guessInput.value);
 
   // Validate
@@ -65,7 +70,7 @@ guessBtn.addEventListener('click', function() {
       setMessage(`${guess} is not correct, ${guessesLeft} guesses left`, 'red');
     }
   }
-});
+};
 
 // Game Over
 function gameOver(won, msg) {
